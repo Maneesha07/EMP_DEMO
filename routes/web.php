@@ -18,3 +18,14 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', 'HomeController@index');
+
+Route::prefix('employees')->group(
+    function () {
+        Route::get('/', 'EmployeeController@index')->name('employees.index');        
+        Route::get('/create', 'EmployeeController@create')->name('employee.create');
+        Route::post('/create', 'EmployeeController@store')->name('employee.store');
+        Route::get('/{employee}', 'EmployeeController@edit')->name('employee.edit');
+        Route::put('/{employee}', 'EmployeeController@update')->name('employee.update');   
+        Route::delete('/{employee}', 'EmployeeController@destroy')->name('employee.destroy');    
+    }
+);
